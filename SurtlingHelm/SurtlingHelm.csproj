@@ -6,8 +6,8 @@
     <ProjectGuid>{DEAF4438-8089-40ED-8175-398E1261D45B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ValheimModStub</RootNamespace>
-    <AssemblyName>ValheimModStub</AssemblyName>
+    <RootNamespace>SurtlingHelm</RootNamespace>
+    <AssemblyName>SurtlingHelm</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -37,8 +37,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HarmonyX.2.3.2\lib\net35\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HarmonyX.2.4.0\lib\net45\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="assembly_googleanalytics_publicized">
       <HintPath>$(ValheimDir)\valheim_Data\Managed\publicized_assemblies\assembly_googleanalytics_publicized.dll</HintPath>
@@ -91,11 +91,11 @@
     <Reference Include="Mono.Cecil.Rocks, Version=0.11.3.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <HintPath>..\packages\Mono.Cecil.0.11.3\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
-    <Reference Include="MonoMod.RuntimeDetour, Version=21.1.11.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoMod.RuntimeDetour.21.1.11.1\lib\net40\MonoMod.RuntimeDetour.dll</HintPath>
+    <Reference Include="MonoMod.RuntimeDetour, Version=21.3.28.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoMod.RuntimeDetour.21.3.28.2\lib\net40\MonoMod.RuntimeDetour.dll</HintPath>
     </Reference>
-    <Reference Include="MonoMod.Utils, Version=21.1.11.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoMod.Utils.21.1.11.1\lib\net40\MonoMod.Utils.dll</HintPath>
+    <Reference Include="MonoMod.Utils, Version=21.3.28.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoMod.Utils.21.3.28.2\lib\net40\MonoMod.Utils.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -347,16 +347,26 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ValheimDir)\unstripped_corlib\UnityEngine.XRModule.dll</HintPath>
     </Reference>
+    <Reference Include="ValheimLib">
+      <HintPath>..\libraries\ValheimLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Item\ItemData.cs" />
+    <Compile Include="Patch\PlayerPatch.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
-    <Compile Include="ValheimModStub.cs" />
+    <Compile Include="SurtlingHelm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\AssetHelper.cs" />
+    <Compile Include="Util\CoroutineExtensions.cs" />
+    <Compile Include="Util\Log.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="surtlinghelm" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>powershell.exe -ExecutionPolicy RemoteSigned -File "$(SolutionDir)publish.ps1" -Target "$(ConfigurationName)" -TargetPath "$(TargetDir.TrimEnd('\'))" -TargetAssembly "$(TargetFileName)" -ValheimPath "$(ValheimDir.TrimEnd('\'))"</PostBuildEvent>
