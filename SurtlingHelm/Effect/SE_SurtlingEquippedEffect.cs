@@ -14,7 +14,7 @@ namespace SurtlingHelm.Effect
       _eyeFireEffect.SetActive(true);
       _transform = _eyeFireEffect.transform;
       foreach (var p in _eyeFireEffect.GetComponentsInChildren<ParticleSystem>()) p.Play();
-      Debug.Log("Claling awake on surtling effect");
+      Debug.Log("Calling awake on surtling effect");
     }
 
     public override void UpdateStatusEffect(float dt)

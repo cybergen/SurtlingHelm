@@ -101,7 +101,6 @@ namespace SurtlingHelm.Patch
                 var goTwo = GameObject.Instantiate(AssetHelper.EyeHitPrefab, hit.point - right * 0.06f - dir * 0.07f, Quaternion.identity);
                 goOne.SetActive(true);
                 goTwo.SetActive(true);
-                CoroutineExtensions.DelayedMethod(0.3f, () => { Object.Destroy(goOne); GameObject.Destroy(goTwo); });
                 hasDoneFlash = true;
               }
 

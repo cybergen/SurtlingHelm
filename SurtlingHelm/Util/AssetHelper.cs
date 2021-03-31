@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
 using UnityEngine;
-using ValheimLib;
-using ValheimLib.ODB;
 
 namespace SurtlingHelm.Util
 {
@@ -10,9 +8,6 @@ namespace SurtlingHelm.Util
   {
     public const string AssetBundleName = "surtlinghelm";
     public static AssetBundle SurtlingAssetBundle;
-
-    public const string HelmPrefabPath = "assets/effects/surtlinghelm.prefab";
-    public static CustomItem Helm;
 
     public const string EyeGlowPrefabPath = "assets/effects/eyeflames/eyefire.prefab";
     public static GameObject EyeGlowPrefab
@@ -59,7 +54,7 @@ namespace SurtlingHelm.Util
     }
     private static GameObject _eyeHitGameObject;
 
-    public const string IconPath = "assets/icons/icon";
+    public const string IconPath = "assets/icons/icon.png";
     public static Sprite Icon
     {
       get
@@ -77,18 +72,6 @@ namespace SurtlingHelm.Util
     {
       Debug.Log("Loading asset bundle and creating item");
       SurtlingAssetBundle = GetAssetBundleFromResources(AssetBundleName);
-
-      var mock = Mock<ItemDrop>.Create("HelmetTrollLeather");
-      var cloned = Prefab.GetRealPrefabFromMock<ItemDrop>(mock).gameObject.InstantiateClone("SurtlingHelm", false);
-      var helmet = new CustomItem(cloned, fixReference: true);
-      helmet.ItemPrefab.name = "SurtlingHelm";
-      var meshRenderer = helmet.ItemPrefab.transform.GetComponentInChildren<MeshRenderer>();
-      var mat = Object.Instantiate(meshRenderer.materials[0]);
-      mat.name = "surtling_helm_material";
-      mat.color = new Color(255, 0, 194, 255);
-      meshRenderer.materials[0] = mat;
-      var skinnedRenderer = helmet.ItemPrefab.transform.Find("attach_skin/hood").GetComponent<SkinnedMeshRenderer>();
-      skinnedRenderer.materials[0] = mat;
     }
 
     public static AssetBundle GetAssetBundleFromResources(string fileName)

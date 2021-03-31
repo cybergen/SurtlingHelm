@@ -2,7 +2,6 @@
 using BepInEx.Configuration;
 using System;
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 using ValheimLib.ODB;
 using SurtlingHelm.Effect;
@@ -30,8 +29,6 @@ namespace SurtlingHelm
     private const string ModName = "SurtlingHelm";
     private const string ModVer = "0.0.2";
 
-    private StatusEffect _helmStatusEffect;
-
     internal static SurtlingHelm Instance { get; private set; }
 
     /// <summary>
@@ -42,9 +39,10 @@ namespace SurtlingHelm
       Instance = this;
       Log.Init(Logger);
       InitConfigData();
+      Language.LanguageData.Init();
       ObjectDBHelper.OnBeforeCustomItemsAdded += AssetHelper.Init;
-      ObjectDBHelper.OnBeforeCustomItemsAdded += InitStatusEffects;
-      ObjectDBHelper.OnAfterInit += () => ItemData.Init(_helmStatusEffect);
+      //ObjectDBHelper.OnBeforeCustomItemsAdded += InitStatusEffects;
+      ObjectDBHelper.OnBeforeCustomItemsAdded += ItemData.Init;
       ObjectDBHelper.OnAfterInit += PlayerPatch.Init;
     }
 
@@ -85,11 +83,13 @@ namespace SurtlingHelm
 
     private void InitStatusEffects()
     {
-      _helmStatusEffect = ScriptableObject.CreateInstance<SE_SurtlingEquippedEffect>();
-      _helmStatusEffect.m_icon = AssetHelper.Icon;
-      _helmStatusEffect.m_name = ItemData.EffectName;
-      _helmStatusEffect.m_tooltip = ItemData.SurtlingTooltipName;
-      ObjectDBHelper.Add(new CustomStatusEffect(_helmStatusEffect, fixReference: true));
+      Debug.Log("Initializing status effects");
+      var effect = ScriptableObject.CreateInstance<SE_SurtlingEquippedEffect>();
+      effect.m_icon = AssetHelper.Icon;
+      effect.m_name = Language.LanguageData.EffectValue;
+      effect.name = Language.LanguageData.EffectValue;
+      effect.m_tooltip = Language.LanguageData.SurtlingTooltipName;
+      ObjectDBHelper.Add(new CustomStatusEffect(effect, true));
     }
   }
 }

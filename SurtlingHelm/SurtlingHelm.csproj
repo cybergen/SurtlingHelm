@@ -355,6 +355,7 @@
   <ItemGroup>
     <Compile Include="Effect\SE_SurtlingEquippedEffect.cs" />
     <Compile Include="Item\ItemData.cs" />
+    <Compile Include="Language\LanguageData.cs" />
     <Compile Include="Patch\PlayerPatch.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="SurtlingHelm.cs" />
