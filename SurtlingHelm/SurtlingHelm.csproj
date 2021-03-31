@@ -352,6 +352,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Effect\SE_SurtlingEquippedEffect.cs" />
     <Compile Include="Item\ItemData.cs" />
     <Compile Include="Patch\PlayerPatch.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />

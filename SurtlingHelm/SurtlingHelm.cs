@@ -1,11 +1,20 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
 using System;
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
+using ValheimLib.ODB;
+using SurtlingHelm.Effect;
+using SurtlingHelm.Util;
+using SurtlingHelm.Item;
+using SurtlingHelm.Patch;
 
 namespace SurtlingHelm
 {
   [BepInPlugin(ModGuid, ModName, ModVer)]
+  [BepInProcess("valheim.exe")]
+  [BepInDependency("ValheimModdingTeam.ValheimLib", BepInDependency.DependencyFlags.HardDependency)]
   public class SurtlingHelm : BaseUnityPlugin
   {
     public const string ModGuid = AuthorName + "." + ModName;
@@ -26,15 +35,15 @@ namespace SurtlingHelm
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
-    private void Awake()
+    private async void Awake()
     {
       Instance = this;
-
       Log.Init(Logger);
       InitConfigData();
-      Util.AssetHelper.Init();
-      Item.ItemData.Init();
-      Patch.PlayerPatch.Init();
+      AssetHelper.Init();
+      InitStatusEffects();
+      ItemData.Init();
+      PlayerPatch.Init();
     }
 
     /// <summary>
@@ -64,6 +73,15 @@ namespace SurtlingHelm
         return;
       }
       SurtlingFireKey = laserFireKeyCode;
+    }
+
+    private void InitStatusEffects()
+    {
+      var helmEffect = ScriptableObject.CreateInstance<SE_SurtlingEquippedEffect>();
+      helmEffect.m_icon = AssetHelper.Icon;
+      helmEffect.m_name = ItemData.EffectName;
+      helmEffect.m_tooltip = ItemData.SurtlingTooltipName;
+      ObjectDBHelper.Add(new CustomStatusEffect(helmEffect, fixReference: true));
     }
   }
 }

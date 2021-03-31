@@ -34,9 +34,6 @@ namespace SurtlingHelm.Patch
   [HarmonyPatch(typeof(Player), "Update")]
   internal class ShowcaseHarmonyPatch
   {
-    private static bool _wasWearingHelm;
-    private static Transform _eyeGlow;
-
     private static bool _wasFiring;
     private static Transform _leftEyeBeam;
     private static Transform _rightEyeBeam;
@@ -56,28 +53,6 @@ namespace SurtlingHelm.Patch
 
       if (helm != null && helm.m_equiped)
       {
-        {
-          if (!_wasWearingHelm)
-          {
-            _wasWearingHelm = true;
-
-            var go = GameObject.Instantiate(AssetHelper.EyeGlowPrefab);
-            go.SetActive(true);
-            _eyeGlow = go.transform;
-            var particles = go.GetComponentsInChildren<ParticleSystem>();
-            foreach (var particle in particles)
-            {
-              particle.Play();
-            }
-          }
-
-          var eye = __instance.m_head;
-          _eyeGlow.position = eye.position;
-          _eyeGlow.forward = eye.right;
-          _eyeGlow.position -= eye.right * 0.1f;
-          _eyeGlow.position += eye.up * 0.18f;
-        }
-
         if (Input.GetKey(SurtlingHelm.SurtlingFireKey))
         {
           if (!_wasFiring || _leftEyeBeam == null)
@@ -99,12 +74,17 @@ namespace SurtlingHelm.Patch
 
           if (__instance.IsPlayer() && helm != null && helm.m_equiped)
           {
+            var head = __instance.m_head;
+            var position = head.position + head.up * 0.18f;
+            var forward = head.right;
+            var right = head.forward;
+
             var dir = _cam.transform.forward;
-            var startPoint = _eyeGlow.position + _eyeGlow.forward * 0.4f;
+            var startPoint = position + forward * 0.4f;
             var endPoint = dir * 60 + _cam.transform.position;
 
-            _leftEyeBeam.position = _eyeGlow.position + _eyeGlow.right * 0.06f;
-            _rightEyeBeam.position = _eyeGlow.position - _eyeGlow.right * 0.06f;
+            _leftEyeBeam.position = position + right * 0.06f;
+            _rightEyeBeam.position = position - right * 0.06f;
             _leftEyeBeam.forward = _rightEyeBeam.forward = dir;
 
             bool hasDoneFlash = false;
@@ -112,13 +92,13 @@ namespace SurtlingHelm.Patch
             foreach (var hit in Physics.RaycastAll(_cam.transform.position, dir, 50f))
             {
               var newEndpoint = hit.point;
-              var newDir = (newEndpoint - _eyeGlow.position).normalized;
+              var newDir = (newEndpoint - position).normalized;
               _leftEyeBeam.forward = _rightEyeBeam.forward = newDir;
 
               if (!hasDoneFlash)
               {
-                var goOne = GameObject.Instantiate(AssetHelper.EyeHitPrefab, hit.point + _eyeGlow.right * 0.06f - dir * 0.07f, Quaternion.identity);
-                var goTwo = GameObject.Instantiate(AssetHelper.EyeHitPrefab, hit.point - _eyeGlow.right * 0.06f - dir * 0.07f, Quaternion.identity);
+                var goOne = GameObject.Instantiate(AssetHelper.EyeHitPrefab, hit.point + right * 0.06f - dir * 0.07f, Quaternion.identity);
+                var goTwo = GameObject.Instantiate(AssetHelper.EyeHitPrefab, hit.point - right * 0.06f - dir * 0.07f, Quaternion.identity);
                 goOne.SetActive(true);
                 goTwo.SetActive(true);
                 CoroutineExtensions.DelayedMethod(0.3f, () => { Object.Destroy(goOne); GameObject.Destroy(goTwo); });
@@ -167,14 +147,6 @@ namespace SurtlingHelm.Patch
 
           Object.Destroy(_shaker);
           _shaker = null;
-        }
-      }
-      else
-      {
-        if (_wasWearingHelm || _eyeGlow != null)
-        {
-          GameObject.Destroy(_eyeGlow?.gameObject);
-          _wasWearingHelm = false;
         }
       }
     }

@@ -9,10 +9,10 @@ namespace SurtlingHelm.Util
     public const string AssetBundleName = "surtlinghelm";
     public static AssetBundle SurtlingAssetBundle;
 
-    public const string HelmPrefabPath = "Assets/CustomItems/SurtlingHelm.prefab";
+    public const string HelmPrefabPath = "Assets/Effects/SurtlingHelm.prefab";
     public static GameObject HelmPrefab;
 
-    public const string EyeGlowPrefabPath = "Assets/CustomItems/SurtlingHelmEyeCenter.prefab";
+    public const string EyeGlowPrefabPath = "assets/effects/eyeflames/eyefire.prefab";
     public static GameObject EyeGlowPrefab
     {
       get
@@ -27,7 +27,7 @@ namespace SurtlingHelm.Util
     }
     private static GameObject _eyeGlowGameObject;
 
-    public const string EyeBeamPrefabPath = "Assets/CustomItems/EyeBeam.prefab";
+    public const string EyeBeamPrefabPath = "Assets/Effects/EyeBeam/EyeBeam.prefab";
     public static GameObject EyeBeamPrefab
     {
       get
@@ -42,7 +42,7 @@ namespace SurtlingHelm.Util
     }
     private static GameObject _eyeBeamGameObject;
 
-    public const string EyeHitEffectPrefabPath = "Assets/CustomItems/EyeHit.prefab";
+    public const string EyeHitEffectPrefabPath = "Assets/Effects/EyeHit/EyeHit.prefab";
     public static GameObject EyeHitPrefab
     {
       get
@@ -57,10 +57,25 @@ namespace SurtlingHelm.Util
     }
     private static GameObject _eyeHitGameObject;
 
+    public const string IconPath = "Assets/Icons/Icon";
+    public static Sprite Icon
+    {
+      get
+      {
+        if (_icon == null)
+        {
+          _icon = SurtlingAssetBundle.LoadAsset<Sprite>(IconPath);
+        }
+        return _icon;
+      }
+    }
+    private static Sprite _icon;
+
     public static void Init()
     {
       SurtlingAssetBundle = GetAssetBundleFromResources(AssetBundleName);
-      HelmPrefab = SurtlingAssetBundle.LoadAsset<GameObject>(HelmPrefabPath);
+      foreach (var n in SurtlingAssetBundle.GetAllAssetNames()) Debug.Log($"Names in bundle: {n}");
+      //HelmPrefab = SurtlingAssetBundle.LoadAsset<GameObject>(HelmPrefabPath);
     }
 
     public static AssetBundle GetAssetBundleFromResources(string fileName)
