@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using ValheimLib;
+using ValheimLib.ODB;
 
 namespace SurtlingHelm.Util
 {
@@ -9,7 +11,7 @@ namespace SurtlingHelm.Util
     public const string AssetBundleName = "surtlinghelm";
     public static AssetBundle SurtlingAssetBundle;
 
-    public const string HelmPrefabPath = "Assets/Effects/SurtlingHelm.prefab";
+    public const string HelmPrefabPath = "assets/effects/surtlinghelm.prefab";
     public static GameObject HelmPrefab;
 
     public const string EyeGlowPrefabPath = "assets/effects/eyeflames/eyefire.prefab";
@@ -27,7 +29,7 @@ namespace SurtlingHelm.Util
     }
     private static GameObject _eyeGlowGameObject;
 
-    public const string EyeBeamPrefabPath = "Assets/Effects/EyeBeam/EyeBeam.prefab";
+    public const string EyeBeamPrefabPath = "assets/effects/eyebeam/eyebeam.prefab";
     public static GameObject EyeBeamPrefab
     {
       get
@@ -42,7 +44,7 @@ namespace SurtlingHelm.Util
     }
     private static GameObject _eyeBeamGameObject;
 
-    public const string EyeHitEffectPrefabPath = "Assets/Effects/EyeHit/EyeHit.prefab";
+    public const string EyeHitEffectPrefabPath = "assets/effects/eyehit/eyehit.prefab";
     public static GameObject EyeHitPrefab
     {
       get
@@ -57,7 +59,7 @@ namespace SurtlingHelm.Util
     }
     private static GameObject _eyeHitGameObject;
 
-    public const string IconPath = "Assets/Icons/Icon";
+    public const string IconPath = "assets/icons/icon";
     public static Sprite Icon
     {
       get
@@ -74,8 +76,16 @@ namespace SurtlingHelm.Util
     public static void Init()
     {
       SurtlingAssetBundle = GetAssetBundleFromResources(AssetBundleName);
-      foreach (var n in SurtlingAssetBundle.GetAllAssetNames()) Debug.Log($"Names in bundle: {n}");
-      //HelmPrefab = SurtlingAssetBundle.LoadAsset<GameObject>(HelmPrefabPath);
+      var p = Prefab.Cache.GetPrefab<ItemDrop>("HelmetTrollLeather");
+      HelmPrefab = GameObject.Instantiate(p.gameObject);
+      HelmPrefab.SetActive(false);
+      HelmPrefab.name = "SurtlingHelm";
+      var meshRenderer = HelmPrefab.transform.GetComponentInChildren<MeshRenderer>();
+      var mat = Object.Instantiate(meshRenderer.materials[0]);
+      mat.color = new Color(255, 0, 194, 255);
+      meshRenderer.materials[0] = mat;
+      var skinnedRenderer = HelmPrefab.transform.GetComponentInChildren<SkinnedMeshRenderer>();
+      skinnedRenderer.materials[0] = mat;
     }
 
     public static AssetBundle GetAssetBundleFromResources(string fileName)

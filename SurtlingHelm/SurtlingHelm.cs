@@ -30,6 +30,8 @@ namespace SurtlingHelm
     private const string ModName = "SurtlingHelm";
     private const string ModVer = "0.0.2";
 
+    private StatusEffect _helmStatusEffect;
+
     internal static SurtlingHelm Instance { get; private set; }
 
     /// <summary>
@@ -42,7 +44,7 @@ namespace SurtlingHelm
       InitConfigData();
       AssetHelper.Init();
       InitStatusEffects();
-      ItemData.Init();
+      ItemData.Init(_helmStatusEffect);
       PlayerPatch.Init();
     }
 
@@ -77,11 +79,11 @@ namespace SurtlingHelm
 
     private void InitStatusEffects()
     {
-      var helmEffect = ScriptableObject.CreateInstance<SE_SurtlingEquippedEffect>();
-      helmEffect.m_icon = AssetHelper.Icon;
-      helmEffect.m_name = ItemData.EffectName;
-      helmEffect.m_tooltip = ItemData.SurtlingTooltipName;
-      ObjectDBHelper.Add(new CustomStatusEffect(helmEffect, fixReference: true));
+      _helmStatusEffect = ScriptableObject.CreateInstance<SE_SurtlingEquippedEffect>();
+      _helmStatusEffect.m_icon = AssetHelper.Icon;
+      _helmStatusEffect.m_name = ItemData.EffectName;
+      _helmStatusEffect.m_tooltip = ItemData.SurtlingTooltipName;
+      ObjectDBHelper.Add(new CustomStatusEffect(_helmStatusEffect, fixReference: true));
     }
   }
 }
