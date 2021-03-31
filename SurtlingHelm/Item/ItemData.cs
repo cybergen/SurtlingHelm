@@ -25,18 +25,18 @@ namespace SurtlingHelm.Item
     internal static void Init(StatusEffect helmEffect)
     {
       SetupHelm(helmEffect);
-      AddCustomRecipe();
       AddCustomItems();
-      Language.AddToken(TokenName, TokenValue);
-      Language.AddToken(TokenDescriptionName, TokenDescriptionValue);
-      Language.AddToken(EffectName, EffectValue);
-      Language.AddToken(SurtlingTooltipName, SurtlingTooltipValue);
+      AddCustomRecipe();
+      Language.AddToken(TokenName, TokenValue, false);
+      Language.AddToken(TokenDescriptionName, TokenDescriptionValue, false);
+      Language.AddToken(EffectName, EffectValue, false);
+      Language.AddToken(SurtlingTooltipName, SurtlingTooltipValue, false);
     }
 
     private static void SetupHelm(StatusEffect helmEffect)
     {
-      var go = AssetHelper.HelmPrefab;
-      var item = go.GetComponent<ItemDrop>();
+      var helm = AssetHelper.Helm;
+      var item = helm.ItemDrop;
       item.m_itemData.m_shared.m_name = Item.ItemData.TokenName;
       item.m_itemData.m_shared.m_description = Item.ItemData.TokenDescriptionName;
       item.m_itemData.m_shared.m_setName = string.Empty;
@@ -49,24 +49,23 @@ namespace SurtlingHelm.Item
     private static void AddCustomRecipe()
     {
       var recipe = ScriptableObject.CreateInstance<Recipe>();
-      recipe.m_item = AssetHelper.HelmPrefab.GetComponent<ItemDrop>();
+      recipe.m_item = AssetHelper.Helm.ItemDrop;
       var neededResources = new List<Piece.Requirement>
       {
         MockRequirement.Create("SurtlingCore", 10),
         MockRequirement.Create("TrollHide", 5),
       };
       recipe.m_resources = neededResources.ToArray();
-      var CustomRecipe = new CustomRecipe(recipe, false, true);
+      var CustomRecipe = new CustomRecipe(recipe, true, true);
       ObjectDBHelper.Add(CustomRecipe);
     }
 
     private static void AddCustomItems()
     {
-      var CustomItem = new CustomItem(AssetHelper.HelmPrefab, true);
-      ObjectDBHelper.Add(CustomItem);
-      ObjectDBHelper.Add(new CustomItem(AssetHelper.EyeGlowPrefab, false));
-      ObjectDBHelper.Add(new CustomItem(AssetHelper.EyeBeamPrefab, false));
-      ObjectDBHelper.Add(new CustomItem(AssetHelper.EyeHitPrefab, false));
+      ObjectDBHelper.Add(AssetHelper.Helm);
+      ObjectDBHelper.Add(new CustomItem(AssetHelper.EyeGlowPrefab, true));
+      ObjectDBHelper.Add(new CustomItem(AssetHelper.EyeBeamPrefab, true));
+      ObjectDBHelper.Add(new CustomItem(AssetHelper.EyeHitPrefab, true));
     }
   }
 }

@@ -42,10 +42,16 @@ namespace SurtlingHelm
       Instance = this;
       Log.Init(Logger);
       InitConfigData();
-      AssetHelper.Init();
-      InitStatusEffects();
-      ItemData.Init(_helmStatusEffect);
-      PlayerPatch.Init();
+      ObjectDBHelper.OnBeforeCustomItemsAdded += AssetHelper.Init;
+      ObjectDBHelper.OnBeforeCustomItemsAdded += InitStatusEffects;
+      ObjectDBHelper.OnAfterInit += () => ItemData.Init(_helmStatusEffect);
+      ObjectDBHelper.OnAfterInit += PlayerPatch.Init;
+    }
+
+    private IEnumerator WaitForZNetScene(Action doAfterReady)
+    {
+      while (ZNetScene.instance == null) yield return null;
+      doAfterReady();
     }
 
     /// <summary>

@@ -12,7 +12,7 @@ namespace SurtlingHelm.Util
     public static AssetBundle SurtlingAssetBundle;
 
     public const string HelmPrefabPath = "assets/effects/surtlinghelm.prefab";
-    public static GameObject HelmPrefab;
+    public static CustomItem Helm;
 
     public const string EyeGlowPrefabPath = "assets/effects/eyeflames/eyefire.prefab";
     public static GameObject EyeGlowPrefab
@@ -29,7 +29,7 @@ namespace SurtlingHelm.Util
     }
     private static GameObject _eyeGlowGameObject;
 
-    public const string EyeBeamPrefabPath = "assets/effects/eyebeam/eyebeam.prefab";
+    public const string EyeBeamPrefabPath = "assets/effects/eyebeam/eyelaser.prefab";
     public static GameObject EyeBeamPrefab
     {
       get
@@ -75,16 +75,19 @@ namespace SurtlingHelm.Util
 
     public static void Init()
     {
+      Debug.Log("Loading asset bundle and creating item");
       SurtlingAssetBundle = GetAssetBundleFromResources(AssetBundleName);
-      var p = Prefab.Cache.GetPrefab<ItemDrop>("HelmetTrollLeather");
-      HelmPrefab = GameObject.Instantiate(p.gameObject);
-      HelmPrefab.SetActive(false);
-      HelmPrefab.name = "SurtlingHelm";
-      var meshRenderer = HelmPrefab.transform.GetComponentInChildren<MeshRenderer>();
+
+      var mock = Mock<ItemDrop>.Create("HelmetTrollLeather");
+      var cloned = Prefab.GetRealPrefabFromMock<ItemDrop>(mock).gameObject.InstantiateClone("SurtlingHelm", false);
+      var helmet = new CustomItem(cloned, fixReference: true);
+      helmet.ItemPrefab.name = "SurtlingHelm";
+      var meshRenderer = helmet.ItemPrefab.transform.GetComponentInChildren<MeshRenderer>();
       var mat = Object.Instantiate(meshRenderer.materials[0]);
+      mat.name = "surtling_helm_material";
       mat.color = new Color(255, 0, 194, 255);
       meshRenderer.materials[0] = mat;
-      var skinnedRenderer = HelmPrefab.transform.GetComponentInChildren<SkinnedMeshRenderer>();
+      var skinnedRenderer = helmet.ItemPrefab.transform.Find("attach_skin/hood").GetComponent<SkinnedMeshRenderer>();
       skinnedRenderer.materials[0] = mat;
     }
 
