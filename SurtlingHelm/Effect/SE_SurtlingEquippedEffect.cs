@@ -30,7 +30,6 @@ namespace SurtlingHelm.Effect
     public override void Stop()
     {
       base.Stop();
-      //_eyeFireEffect.GetComponent<ZNetView>().Destroy();
       Destroy(_eyeFireEffect);
     }
   }
