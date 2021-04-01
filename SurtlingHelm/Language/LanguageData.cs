@@ -3,7 +3,7 @@
   public class LanguageData
   {
     public const string TokenName = "$custom_item_laserhelm";
-    public const string TokenValue = "Surtling Helm";
+    public const string TokenValue = "SurtlingHelm";
 
     public const string TokenDescriptionName = "$custom_item_laserhelm_description";
     public const string TokenDescriptionValue = "A helm that imbues you with an ominous strength";

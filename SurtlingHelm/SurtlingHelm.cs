@@ -41,7 +41,7 @@ namespace SurtlingHelm
       InitConfigData();
       Language.LanguageData.Init();
       ObjectDBHelper.OnBeforeCustomItemsAdded += AssetHelper.Init;
-      //ObjectDBHelper.OnBeforeCustomItemsAdded += InitStatusEffects;
+      ObjectDBHelper.OnBeforeCustomItemsAdded += InitStatusEffects;
       ObjectDBHelper.OnBeforeCustomItemsAdded += ItemData.Init;
       ObjectDBHelper.OnAfterInit += PlayerPatch.Init;
     }
