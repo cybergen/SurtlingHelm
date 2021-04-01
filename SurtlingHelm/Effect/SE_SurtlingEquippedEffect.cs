@@ -24,7 +24,7 @@ namespace SurtlingHelm.Effect
       _transform.position = eye.position;
       _transform.forward = eye.right;
       _transform.position -= eye.right * 0.165f;
-      _transform.position += eye.up * 0.18f;
+      _transform.position += eye.up * 0.19f;
     }
 
     public override void Stop()

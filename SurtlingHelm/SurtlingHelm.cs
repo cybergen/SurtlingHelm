@@ -46,12 +46,6 @@ namespace SurtlingHelm
       ObjectDBHelper.OnAfterInit += PlayerPatch.Init;
     }
 
-    private IEnumerator WaitForZNetScene(Action doAfterReady)
-    {
-      while (ZNetScene.instance == null) yield return null;
-      doAfterReady();
-    }
-
     /// <summary>
     /// Destroying the attached Behaviour will result in the game or Scene receiving OnDestroy.
     /// OnDestroy occurs when a Scene or game ends.
