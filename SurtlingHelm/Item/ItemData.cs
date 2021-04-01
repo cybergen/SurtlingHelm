@@ -57,10 +57,11 @@ namespace SurtlingHelm.Item
       recipe.m_item = helm.ItemDrop;
       recipe.m_enabled = true;
       recipe.m_minStationLevel = 0;
+      recipe.m_craftingStation = Mock<CraftingStation>.Create("piece_workbench");
       var neededResources = new List<Piece.Requirement>
       {
-        MockRequirement.Create("SurtlingCore", 10),
-        MockRequirement.Create("TrollHide", 5)
+        MockRequirement.Create("SurtlingCore", SurtlingHelm.SurtlingRequired.Value),
+        MockRequirement.Create("TrollHide", SurtlingHelm.TrollHideRequired.Value)
       };
       recipe.m_resources = neededResources.ToArray();
       var helmRecipe = new CustomRecipe(recipe, true, true);

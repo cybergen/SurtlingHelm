@@ -5165,8 +5165,8 @@ GameObject:
   - component: {fileID: 6151680565025400088}
   - component: {fileID: 8551683574245727795}
   - component: {fileID: 1548416175948504898}
-  - component: {fileID: 9124503038741668384}
   - component: {fileID: 3690263794658503770}
+  - component: {fileID: 9124503038741668384}
   m_Layer: 0
   m_Name: EyeFire
   m_TagString: Untagged
@@ -9913,24 +9913,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &9124503038741668384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8032701762801371762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1521249158, guid: bf4ee8743d3ae5440aa06e359abeb9f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_persistent: 0
-  m_distant: 0
-  m_type: 0
-  m_syncInitialScale: 0
-  m_body: {fileID: 0}
-  m_ghost: 0
 --- !u!114 &3690263794658503770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9959,6 +9941,24 @@ MonoBehaviour:
   m_body: {fileID: 0}
   m_projectile: {fileID: 0}
   m_character: {fileID: 0}
+--- !u!114 &9124503038741668384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8032701762801371762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1521249158, guid: bf4ee8743d3ae5440aa06e359abeb9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_persistent: 0
+  m_distant: 0
+  m_type: 0
+  m_syncInitialScale: 0
+  m_body: {fileID: 0}
+  m_ghost: 0
 --- !u!1001 &1107258576941750790
 PrefabInstance:
   m_ObjectHideFlags: 0

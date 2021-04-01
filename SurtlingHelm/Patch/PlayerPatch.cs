@@ -139,8 +139,8 @@ namespace SurtlingHelm.Patch
         else if (_wasFiring || _leftEyeBeam != null)
         {
           _wasFiring = false;
-          GameObject.Destroy(_leftEyeBeam.gameObject);
-          GameObject.Destroy(_rightEyeBeam.gameObject);
+          Object.Destroy(_leftEyeBeam.gameObject);
+          Object.Destroy(_rightEyeBeam.gameObject);
           Object.Destroy(_shaker);
           _shaker = null;
         }

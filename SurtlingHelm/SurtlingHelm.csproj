@@ -366,8 +366,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <EmbeddedResource Include="Assets\surtlinghelm" />
     <None Include="packages.config" />
-    <EmbeddedResource Include="surtlinghelm" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
