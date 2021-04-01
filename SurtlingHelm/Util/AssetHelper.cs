@@ -17,7 +17,6 @@ namespace SurtlingHelm.Util
         if (_eyeGlowGameObject == null)
         {
           _eyeGlowGameObject = SurtlingAssetBundle.LoadAsset<GameObject>(EyeGlowPrefabPath);
-          _eyeGlowGameObject.transform.SetParent(null);
         }
         return _eyeGlowGameObject;
       }
@@ -32,7 +31,6 @@ namespace SurtlingHelm.Util
         if (_eyeBeamGameObject == null)
         {
           _eyeBeamGameObject = SurtlingAssetBundle.LoadAsset<GameObject>(EyeBeamPrefabPath);
-          _eyeBeamGameObject.transform.SetParent(null);
         }
         return _eyeBeamGameObject;
       }
@@ -47,7 +45,6 @@ namespace SurtlingHelm.Util
         if (_eyeHitGameObject == null)
         {
           _eyeHitGameObject = SurtlingAssetBundle.LoadAsset<GameObject>(EyeHitEffectPrefabPath);
-          _eyeHitGameObject.transform.SetParent(null);
         }
         return _eyeHitGameObject;
       }

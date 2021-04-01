@@ -59,11 +59,9 @@ namespace SurtlingHelm.Patch
           {
             _wasFiring = true;
             var leftGO = GameObject.Instantiate(AssetHelper.EyeBeamPrefab);
-            leftGO.SetActive(true);
             _leftEyeBeam = leftGO.transform;
 
             var rightGO = GameObject.Instantiate(AssetHelper.EyeBeamPrefab);
-            rightGO.SetActive(true);
             _rightEyeBeam = rightGO.transform;
 
             _shaker = _cam.gameObject.AddComponent<CamShaker>();
@@ -141,9 +139,8 @@ namespace SurtlingHelm.Patch
         else if (_wasFiring || _leftEyeBeam != null)
         {
           _wasFiring = false;
-          GameObject.Destroy(_leftEyeBeam?.gameObject);
-          GameObject.Destroy(_rightEyeBeam?.gameObject);
-
+          GameObject.Destroy(_leftEyeBeam.gameObject);
+          GameObject.Destroy(_rightEyeBeam.gameObject);
           Object.Destroy(_shaker);
           _shaker = null;
         }

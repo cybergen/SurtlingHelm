@@ -5,8 +5,8 @@ namespace SurtlingHelm.Effect
 {
   public class SE_SurtlingEquippedEffect : StatusEffect
   {
-    private GameObject _eyeFireEffect;
-    private Transform _transform;
+    private static GameObject _eyeFireEffect;
+    private static Transform _transform;
 
     public override void Setup(Character character)
     {

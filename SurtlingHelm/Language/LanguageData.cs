@@ -9,7 +9,7 @@
     public const string TokenDescriptionValue = "A helm that imbues you with an ominous strength";
 
     public const string EffectName = "$se_surtlingeffect_name";
-    public const string EffectValue = "Surtling Helm";
+    public const string EffectValue = "SurtlingHelm";
 
     public const string SurtlingTooltipName = "$se_surtlingeffect_tooltip";
     public const string SurtlingTooltipValue = "Your eyes glow with ominous force";

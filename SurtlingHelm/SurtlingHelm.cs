@@ -1,7 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
 using System;
-using System.Collections;
 using UnityEngine;
 using ValheimLib.ODB;
 using SurtlingHelm.Effect;
@@ -56,7 +55,7 @@ namespace SurtlingHelm
     /// </summary>
     private void OnDestroy()
     {
-      Patch.PlayerPatch.Disable();
+      PlayerPatch.Disable();
     }
 
     private void InitConfigData()
