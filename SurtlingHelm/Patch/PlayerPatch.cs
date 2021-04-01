@@ -32,7 +32,7 @@ namespace SurtlingHelm.Patch
   }
 
   [HarmonyPatch(typeof(Player), "Update")]
-  internal class ShowcaseHarmonyPatch
+  internal class PlayerUpdatePatch
   {
     private static bool _wasFiring;
     private static Transform _leftEyeBeam;
