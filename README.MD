@@ -20,31 +20,31 @@ On the other side awaits all these features!
 
 Glow with a palpable force as you wander the countryside!
 
-[[pics/Stylish.png|Viking wearing incredibly cool glowing helm]]
+![Viking wearing incredibly cool glowing helm](pics/Stylish.png)
 
-[[pics/Stylish2.png|Viking wearing incredibly cool glowing helm, sillhouetted by the moon]]
+![Viking wearing incredibly cool glowing helm, sillhouetted by the moon](pics/Stylish2.png)
 
 ## Powerful
 
 "Like if Cyclops was an Amish raver" - Tona
 
-[[pics/DeerKiller.gif|Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and exploding a prancing deer]]
+![Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and exploding a prancing deer](pics/DeerKiller.gif)
 
-[[pics/BoarKiller.gif|Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and exploding two unsuspecting boar]]
+![Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and exploding two unsuspecting boar](pics/BoarKiller.gif)
 
 ## Craftable
 
 Configure how much it costs to make your own!
 
-[[pics/Crafting.png|Surtling Helm in the crafting menu]]
+![Surtling Helm in the crafting menu](pics/Crafting.png)
 
 ## Multiplayer-Ready
 
 Grab a friend (or 9) and lay waste to the countryside together!
 
-[[pics/Multiplayer1.png|Two incredibly cool vikings with glowing helms]]
+![Two incredibly cool vikings with glowing helms](pics/Multiplayer1.png)
 
-[[pics/Multiplayer1.png|Two incredibly cool vikings with glowing helms]]
+![Two incredibly cool vikings with glowing helms](pics/Multiplayer1.png)
 
 ## Credits
 
