@@ -1,6 +1,7 @@
-﻿using SurtlingHelm.Util;
-using HarmonyLib;
+﻿using System.Collections.Generic;
 using System.Linq;
+using SurtlingHelm.Util;
+using HarmonyLib;
 using UnityEngine;
 
 namespace SurtlingHelm.Patch
@@ -87,7 +88,7 @@ namespace SurtlingHelm.Patch
 
             bool hasDoneFlash = false;
             bool didDamage = false;
-            foreach (var hit in Physics.RaycastAll(_cam.transform.position, dir, 50f))
+            foreach (var hit in Physics.RaycastAll(_cam.transform.position + dir * 1.5f, dir, 50f))
             {
               var newEndpoint = hit.point;
               var newDir = (newEndpoint - position).normalized;
@@ -139,8 +140,12 @@ namespace SurtlingHelm.Patch
         else if (_wasFiring || _leftEyeBeam != null)
         {
           _wasFiring = false;
-          Object.Destroy(_leftEyeBeam.gameObject);
-          Object.Destroy(_rightEyeBeam.gameObject);
+          ZNetScene.instance.m_instances.Remove(_leftEyeBeam.GetComponent<ZNetView>().GetZDO());
+          ZNetScene.instance.m_instances.Remove(_rightEyeBeam.GetComponent<ZNetView>().GetZDO());
+          _leftEyeBeam.GetComponent<ZNetView>().Destroy();
+          _rightEyeBeam.GetComponent<ZNetView>().Destroy();
+          _leftEyeBeam = null;
+          _rightEyeBeam = null;
           Object.Destroy(_shaker);
           _shaker = null;
         }

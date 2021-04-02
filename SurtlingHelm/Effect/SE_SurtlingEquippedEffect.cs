@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using SurtlingHelm.Util;
 
@@ -12,25 +13,40 @@ namespace SurtlingHelm.Effect
     public override void Setup(Character character)
     {
       base.Setup(character);
-      var target = GetTargetPosition(character);
-      _eyeFireEffect = Instantiate(AssetHelper.EyeGlowPrefab, target.Item1, Quaternion.identity);
-      _transform = _eyeFireEffect.transform;
-      _transform.forward = target.Item2;
-      foreach (var p in _eyeFireEffect.GetComponentsInChildren<ParticleSystem>()) p.Play();
+      SpawnFlames();
     }
 
     public override void UpdateStatusEffect(float dt)
     {
       base.UpdateStatusEffect(dt);
-      var target = GetTargetPosition(m_character);
-      if (_transform != null) _transform.position = target.Item1;
-      if (_transform != null) _transform.forward = target.Item2;
+      if (!m_character.IsTeleporting() && _eyeFireEffect == null)
+      {
+        SpawnFlames();
+      }
+      else if (!m_character.IsTeleporting() && _transform != null)
+      {
+        var target = GetTargetPosition(m_character);
+        _transform.position = target.Item1;
+        _transform.forward = target.Item2;
+      }
     }
 
     public override void Stop()
     {
       base.Stop();
-      Destroy(_eyeFireEffect);
+      ZNetScene.instance.m_instances.Remove(_eyeFireEffect.GetComponent<ZNetView>().GetZDO());
+      _eyeFireEffect.GetComponent<ZNetView>().Destroy();
+      _eyeFireEffect = null;
+      _transform = null;
+    }
+
+    private void SpawnFlames()
+    {
+      var target = GetTargetPosition(m_character);
+      _eyeFireEffect = Instantiate(AssetHelper.EyeGlowPrefab, target.Item1, Quaternion.identity);
+      _transform = _eyeFireEffect.transform;
+      _transform.forward = target.Item2;
+      foreach (var p in _eyeFireEffect.GetComponentsInChildren<ParticleSystem>()) p.Play();
     }
 
     private Tuple<Vector3, Vector3> GetTargetPosition(Character c)
