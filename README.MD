@@ -1,6 +1,6 @@
 The Viking afterlife is great, but chopping down one solitary tree at a time, dodging constant Greydwarf ambushes, can really get exhausting. The Surtling Helm is a new piece of equipment that throws away all that silly balance and pacing, cranks everything up to 13, and lets you rain nuclear death across the land.
 
-[[/pics/Deforest.gif|Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and destroying a forest]]
+![Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and destroying a forest](pics/Deforest.gif)
 
 ## Guide
 
@@ -20,31 +20,31 @@ On the other side awaits all these features!
 
 Glow with a palpable force as you wander the countryside!
 
-[[/pics/Stylish.png|Viking wearing incredibly cool glowing helm]]
+[[pics/Stylish.png|Viking wearing incredibly cool glowing helm]]
 
-[[/pics/Stylish2.png|Viking wearing incredibly cool glowing helm, sillhouetted by the moon]]
+[[pics/Stylish2.png|Viking wearing incredibly cool glowing helm, sillhouetted by the moon]]
 
 ## Powerful
 
 "Like if Cyclops was an Amish raver" - Tona
 
-[[/pics/DeerKiller.gif|Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and exploding a prancing deer]]
+[[pics/DeerKiller.gif|Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and exploding a prancing deer]]
 
-[[/pics/BoarKiller.gif|Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and exploding two unsuspecting boar]]
+[[pics/BoarKiller.gif|Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and exploding two unsuspecting boar]]
 
 ## Craftable
 
 Configure how much it costs to make your own!
 
-[[/pics/Crafting.png|Surtling Helm in the crafting menu]]
+[[pics/Crafting.png|Surtling Helm in the crafting menu]]
 
 ## Multiplayer-Ready
 
 Grab a friend (or 9) and lay waste to the countryside together!
 
-[[/pics/Multiplayer1.png|Two incredibly cool vikings with glowing helms]]
+[[pics/Multiplayer1.png|Two incredibly cool vikings with glowing helms]]
 
-[[/pics/Multiplayer1.png|Two incredibly cool vikings with glowing helms]]
+[[pics/Multiplayer1.png|Two incredibly cool vikings with glowing helms]]
 
 ## Credits
 
