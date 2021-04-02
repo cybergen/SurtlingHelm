@@ -15,7 +15,7 @@ namespace SurtlingHelm
   [BepInDependency("ValheimModdingTeam.ValheimLib", BepInDependency.DependencyFlags.HardDependency)]
   public class SurtlingHelm : BaseUnityPlugin
   {
-    public const string ModGuid = AuthorName + "." + ModName;
+    public const string ModGuid = ModName;
     public static ConfigEntry<string> LaserFireKey;
     public static ConfigEntry<float> BaseLaserDamage;
     public static ConfigEntry<float> LaserHitInterval;
@@ -28,7 +28,7 @@ namespace SurtlingHelm
 
     private const string AuthorName = "cybergen";
     private const string ModName = "SurtlingHelm";
-    private const string ModVer = "0.0.2";
+    private const string ModVer = "0.1.0";
 
     internal static SurtlingHelm Instance { get; private set; }
 
