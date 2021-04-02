@@ -44,11 +44,11 @@ Grab a friend (or 9) and lay waste to the countryside together!
 
 ![Two incredibly cool vikings with glowing helms](pics/Multiplayer1.png)
 
-![Two incredibly cool vikings with glowing helms](pics/Multiplayer1.png)
+![Two incredibly cool vikings with glowing helms lasering down enemies in a swamp](pics/Multiplayer2.png)
 
 ## Credits
 
-* This repo is a fork of the excellent [ValheimModStub](https://github.com/sirskunkalot/ValheimModStub) repo which is a great starting point
+* This repo began as a fork of the excellent [ValheimModStub](https://github.com/sirskunkalot/ValheimModStub) repo which is a great template for Valheim mods
 * It's also built using [ValheimLib](https://github.com/Valheim-Modding/ValheimLib) which greatly simplifies adding new items
 
 ## Make Your Own
