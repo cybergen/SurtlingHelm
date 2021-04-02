@@ -1,83 +1,56 @@
-A Valheim mod stub project including build tools for debugging your code in Visual Studio and publishing a mod including BepInEx as zip files for Windows and Unix. There is no actual plugin content included, just a bare minimum plugin class. 
+The Viking afterlife is great, but chopping down one solitary tree at a time, dodging constant Greydwarf ambushes, can really get exhausting. The Surtling Helm is a new piece of equipment that throws away all that silly balance and pacing, cranks everything up to 13, and lets you rain nuclear death across the land.
 
-# Development Environment Setup
+[[/pics/Deforest.gif|Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and destroying a forest]]
 
-How to setup the development enviroment for this project.
+## Guide
 
-1. Install [Visual Studio 2019](https://visualstudio.microsoft.com) and add the C# workload.
-2. Download this package: https://mega.nz/file/hBM0BDBS#eAY26LfmSSVlIz2MZn0ox8WKspfKmeIssz7durp5SfM
-3. Unpack into your Valheim root folder. You should now see a new folder called `<ValheimDir>\unstripped_corlib`.
-4. [Compile](https://github.com/MrPurple6411/Bepinex-Tools) or [Download](https://mega.nz/file/oQxEjCJI#_XPXEjwLfv9zpcF2HRakYzepMwaUXflA9txxhx4tACA) Publicizers executable version. This will result in a new executable `AssemblyPublicizer.exe`.
-5. Drag and drop all `assembly_*.dll` files from `<ValheimDir>\valheim_Data\Managed` onto `AssemblyPublicizer.exe`. You should get a new folder `<ValheimDir>\valheim_Data\Managed\publicized_assemblies` with all dragged dll files in it.
-6. Clone this repository using git. That should create a new folder `ValheimModStub`.
-7. Create a new user project file `ValheimModStub.csproj.user` alongside the project file within `<ValheimModStub>\ValheimModStub` to define some properties local to you. Paste this snippet and configure the paths as they are present on your computer.
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <!-- Needs to be your path to the base Valheim folder -->
-    <ValheimDir>F:\Steam\steamapps\common\Valheim</ValheimDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartAction>Program</StartAction>
-    <!-- Start valheim.exe after building Debug-->
-    <StartProgram>$(ValheimDir)\valheim.exe</StartProgram>
-    <!-- If you want to connect to a server automatically, add '+connect <ip-address>:<port>' as StartArguments -->
-    <StartArguments>+console</StartArguments>
-  </PropertyGroup>
-</Project>
-```
-8. Open the Solution file `<ValheimModStub>\ValheimModStub.sln`. It should prompt you a message at the top that some NuGet-Packages are missing. Click "Restore" and restart Visual Studio when finished.
+To get your helmet, first:
 
-# Build automations
+* [Install BepInEx](https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/)
+* [Install the HookGen patcher](https://valheim.thunderstore.io/package/ValheimModding/HookGenPatcher/)
+* [Install ValheimLib](https://valheim.thunderstore.io/package/ValheimModding/ValheimLib/) in order to get access to all these features!
+* Copy this SurtlingHelm .dll file into your BepInEx/plugins folder
+* Find a basic workbench and craft your purple hood of imminent death! (for a one-time fee of Surtling Cores and Troll Hide)
 
-Included in this repo are a PowerShell script `publish.ps1` and a folder `resources`. The script is referenced in the project file as a build event. Depending on the chosen configuration in Visual Studio the script executes the following actions.
+You can also edit the cost of the helm, as well as its damage by changing the config at BepInEx/config/SurthlingHelm.cfg
 
-## Building Debug
+On the other side awaits all these features!
 
-* The contents of `<ValheimModStub>\resources\Local` are copied to `<ValheimDir>`. You can put there whatever you want to copy to the game directoy alongside the plugin dll.
-* The BepInEx core libraries are copied from `<ValheimModStub>\packages` and `<ValheimModStub>\libraries\BepInEx` to `<ValheimDir>\BepInEx\core`.
-* The compiled dll file for this project is copied to `<ValheimDir>\BepInEx\plugins`.
-* A .mdb file is generated for the compiled project dll and copied to `<ValheimDir>\BepInEx\plugins`.
-* `<ValheimModStub>\libraries\Debug\mono-2.0-bdwgc.dll` is copied to `<ValheimDir>\MonoBleedingEdge\EmbedRuntime` replacing the original file (a backup is created before).
+## Stylish
 
-## Building Release
+Glow with a palpable force as you wander the countryside!
 
-* The contents of `<ValheimModStub>\resources\Windows` and `<ValheimModStub>\resources\Unix` are copied to respective folders in `<ValheimModStub>\release`.
-* BepInEx core is created in both folders
-* The project dll is copied.
-* Both folders are compressed into a zip file and then deleted.
+[[/pics/Stylish.png|Viking wearing incredibly cool glowing helm]]
 
-# Debugging with dnSpy
+[[/pics/Stylish2.png|Viking wearing incredibly cool glowing helm, sillhouetted by the moon]]
 
-Thanks to mono and unity-mono being open source, we patched and compiled our own mono runtime to enable actual live debugging of the game and the mod itself with dnSpy.
+## Powerful
 
-1. Download [dnSpy-net-win64](https://github.com/dnSpy/dnSpy/releases) and extract the exe.
-2. Load all assemblies from `<ValheimDir>\unstripped_corlib` into dnSpy (just drag&drop the folder onto it).
-3. Load all `assembly_*` from `<ValheimDir>\valheim_Data\Managed` into dnSpy (*do not load the publicized ones, they will not be loaded into the process and therefore can not be debugged*).
-4. Load `ValheimModStub.dll` from `<ValheimDir>\BepInEx\plugins` into dnSpy.
-5. Copy `<ValheimModStub>\libraries\Debug\mono-2.0-bdwgc.dll` into `<ValheimDir>\MonoBleedingEdge\EmbedRuntime` and overwrite the existing file.
-6. Now go to `Debug` -> `Start Debugging` and select Unity debug engine. Select your valheim.exe as the executable and hit OK.
-7. If you did set some breakpoints, the game will halt when it hits the breakpoint in memory and dnSpy will show you the objects in memory and much more useful stuff.
+"Like if Cyclops was an Amish raver" - Tona
 
-# Debugging with Visual Studio
+[[/pics/DeerKiller.gif|Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and exploding a prancing deer]]
 
-Your own code can be debugged in source with Visual Studio itself. You cannot debug game disassemblies as with dnSpy, though.
+[[/pics/BoarKiller.gif|Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and exploding two unsuspecting boar]]
 
-1. Install Visual Studio Tools for Unity (can be done in Visual Studio installer via `Individual Components` -> `Visual Studio Tools for Unity`)
-3. Build the project with target `Debug`. The publish.ps1 PowerShell script from this repo...
-   * copies the generated mod .dll and .pdb to \<ValheimDir>\BepInEx\plugins after a successful build
-   * automatically generates a ValheimModStub.dll.mdb file, which is needed for Unity/mono debugging. It should be in \<ValheimDir>\BepInEx\plugins, too.
-   * copies the patched mono-2.0-bdwgc.dll from .\libraries\Debug to \<ValheimDir>\MonoBleedingEdge\EmbedRuntime and makes a backup copy of the original.
-4. Start Valheim (either directly from Steam or hit F5 in Visual Studio when Steam is running)
-5. Go to `Debug` -> `Attach Unity debugger`
-6. Since the patched mono dll does not open the same port as Unity Dev builds, you have to click on `Input IP`. It should fill in your local IP automatically. you just have to change the port to `55555`and the debugger should connect.
+## Craftable
 
-# Actions after a game update
+Configure how much it costs to make your own!
 
-When Valheim updates it is likely that parts of the assembly files change. If this is the case, the references to the assembly files must be renewed in Visual Studio and Unity.
+[[/pics/Crafting.png|Surtling Helm in the crafting menu]]
 
-## Visual Studio actions
+## Multiplayer-Ready
 
-1. Make new versions of the publicized assemblies as described in [Development Environment Setup] step 4 and 5.
-2. Go to VS and clean/build (or just rebuild) the project. The building process makes copies of the referenced dlls and stores them in the project folder. To get the newly created dlls it is important to grab the new publicized dlls from step 1.
+Grab a friend (or 9) and lay waste to the countryside together!
+
+[[/pics/Multiplayer1.png|Two incredibly cool vikings with glowing helms]]
+
+[[/pics/Multiplayer1.png|Two incredibly cool vikings with glowing helms]]
+
+## Credits
+
+* This repo is a fork of the excellent [ValheimModStub](https://github.com/sirskunkalot/ValheimModStub) repo which is a great starting point
+* It's also built using [ValheimLib](https://github.com/Valheim-Modding/ValheimLib) which greatly simplifies adding new items
+
+## Make Your Own
+
+Check out the [Valheim modding wiki](https://github.com/Valheim-Modding/Wiki/wiki) to learn more, including how to [add your own items!](https://github.com/Valheim-Modding/Wiki/wiki/Custom-Item-and-Recipe-Creation)
