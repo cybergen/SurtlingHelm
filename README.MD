@@ -1,4 +1,4 @@
-The Viking afterlife is great, but chopping down one solitary tree at a time, dodging constant Greydwarf ambushes, can really get exhausting. The Surtling Helm is a new piece of equipment that throws away all that silly balance and pacing, cranks everything up to 13, and lets you rain nuclear death across the land.
+The Viking afterlife is great, but chopping down one solitary tree at a time while dodging constant Greydwarf ambushes can really get exhausting. The Surtling Helm is a new piece of equipment that throws away all that silly balance and pacing, cranks everything up to 13, and lets you rain nuclear death across the land.
 
 ![Viking wearing incredibly cool, glowing, purple hood, shooting laser beams out and destroying a forest](pics/Deforest.gif)
 
