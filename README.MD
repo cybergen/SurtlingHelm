@@ -9,8 +9,8 @@ To get your helmet, first:
 * [Install BepInEx](https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/)
 * [Install the HookGen patcher](https://valheim.thunderstore.io/package/ValheimModding/HookGenPatcher/)
 * [Install ValheimLib](https://valheim.thunderstore.io/package/ValheimModding/ValheimLib/)
-* Copy this SurtlingHelm .dll file into your BepInEx/plugins folder
-* Find a basic workbench and craft your purple hood of imminent death! (for a one-time fee of Surtling Cores and Troll Hide)
+* Copy SurtlingHelm.dll into your BepInEx/plugins folder
+* Find a basic workbench and craft your purple hood of imminent death! (for a one-time fee of Surtling Cores, Troll Hide, Linen Thread, and Surtling Trophies)
 * Once equipped, press the fire key (default G) to shoot lasers (consumes 1 Surtling Core for every 5 seconds fired by default)
 
 ## Config
