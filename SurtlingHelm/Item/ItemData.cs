@@ -1,10 +1,13 @@
-﻿using SurtlingHelm.Util;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using ValheimLib;
 using ValheimLib.ODB;
-using SurtlingHelm.Language;
 using SurtlingHelm.Effect;
+using SurtlingHelm.Language;
+using SurtlingHelm.Util;
+using SH = SurtlingHelm.SurtlingHelm;
+using MR = ValheimLib.ODB.MockRequirement;
 
 namespace SurtlingHelm.Item
 {
@@ -51,19 +54,23 @@ namespace SurtlingHelm.Item
       Prefab.NetworkRegister(AssetHelper.EyeBeamPrefab);
       Prefab.NetworkRegister(AssetHelper.EyeHitPrefab);
 
-      //Add our recipe to the object db so our item can be crafted
+      //Create a recipe to craft the helm
       var recipe = ScriptableObject.CreateInstance<Recipe>();
       recipe.name = "Recipe_SurtlingHelm";
       recipe.m_item = helm.ItemDrop;
       recipe.m_enabled = true;
-      recipe.m_minStationLevel = 0;
+      recipe.m_minStationLevel = Math.Max(Math.Min(SH.WorkbenchLevelRequired.Value, 5), 0);
       recipe.m_craftingStation = Mock<CraftingStation>.Create("piece_workbench");
-      var neededResources = new List<Piece.Requirement>
-      {
-        MockRequirement.Create("SurtlingCore", SurtlingHelm.SurtlingRequired.Value),
-        MockRequirement.Create("TrollHide", SurtlingHelm.TrollHideRequired.Value)
-      };
-      recipe.m_resources = neededResources.ToArray();
+      var req = new List<Piece.Requirement>();
+
+      //Add required items list to recipe
+      if (SH.SurtlingRequired.Value > 0) req.Add(MR.Create("SurtlingCore", SH.SurtlingRequired.Value));
+      if (SH.TrollHideRequired.Value > 0) req.Add(MR.Create("TrollHide", SH.TrollHideRequired.Value));
+      if (SH.LinenThreadRequired.Value > 0) req.Add(MR.Create("LinenThread", SH.LinenThreadRequired.Value));
+      if (SH.SurtlingTrophyRequired.Value > 0) req.Add(MR.Create("TrophySurtling", SH.SurtlingTrophyRequired.Value));
+      if (req.Count == 0) req.Add(MR.Create("Wood", 1));
+      recipe.m_resources = req.ToArray();
+
       var helmRecipe = new CustomRecipe(recipe, true, true);
       ObjectDBHelper.Add(helmRecipe);
     }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using SurtlingHelm.Util;
 using HarmonyLib;
 using UnityEngine;
@@ -41,6 +40,7 @@ namespace SurtlingHelm.Patch
     private static float _hitEffectCooldown;
     private static Camera _cam;
     private static CamShaker _shaker;
+    private static float _laserTimeRemaining;
 
     private static void Postfix(Player __instance, ref Attack ___m_currentAttack, ref float ___m_lastCombatTimer, Rigidbody ___m_body, ZSyncAnimation ___m_zanim,
       CharacterAnimEvent ___m_animEvent, VisEquipment ___m_visEquipment, Attack ___m_previousAttack, float ___m_timeSinceLastAttack)
@@ -54,7 +54,30 @@ namespace SurtlingHelm.Patch
 
       if (helm != null && helm.m_equiped)
       {
-        if (Input.GetKey(SurtlingHelm.SurtlingFireKey))
+        var firing = false;
+        var firePressed = Input.GetKey(SurtlingHelm.SurtlingFireKey);
+        if (firePressed && (!SurtlingHelm.ConsumeCoresAsFuel.Value || _laserTimeRemaining > 0f))
+        {
+          firing = true;
+          _laserTimeRemaining -= Time.deltaTime;
+        }
+        else if (firePressed)
+        {
+          //Look for surtling core in inventory and consume if have, otherwise show error message
+          var cores = __instance.GetInventory().GetAllItems().FirstOrDefault(i => i.m_shared.m_name == "$item_surtlingcore");
+          if (cores == null || cores.m_stack == 0)
+          {
+            MessageHud.instance.ShowMessage(MessageHud.MessageType.Center, Language.LanguageData.NeedResourcesErrorValue);
+          }
+          else
+          {
+            __instance.GetInventory().RemoveOneItem(cores);
+            _laserTimeRemaining = SurtlingHelm.SecondsOfUsageGrantedPerCore.Value;
+            firing = true;
+          }
+        }
+
+        if (firing)
         {
           if (!_wasFiring || _leftEyeBeam == null)
           {
@@ -110,6 +133,7 @@ namespace SurtlingHelm.Patch
                   m_damage = SurtlingHelm.BasePhysicalDamage.Value,
                   m_fire = SurtlingHelm.BaseLaserDamage.Value,
                   m_chop = SurtlingHelm.ChopDamage.Value,
+                  m_pickaxe = SurtlingHelm.BasePhysicalDamage.Value,
                 };
                 var hitData = new HitData
                 {

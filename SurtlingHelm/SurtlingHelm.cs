@@ -22,20 +22,25 @@ namespace SurtlingHelm
     public static ConfigEntry<float> BasePhysicalDamage;
     public static ConfigEntry<float> KnockbackForce;
     public static ConfigEntry<float> ChopDamage;
+
     public static ConfigEntry<int> SurtlingRequired;
     public static ConfigEntry<int> TrollHideRequired;
+    public static ConfigEntry<int> LinenThreadRequired;
+    public static ConfigEntry<int> SurtlingTrophyRequired;
+    public static ConfigEntry<int> WorkbenchLevelRequired;
+
+    public static ConfigEntry<bool> ConsumeCoresAsFuel;
+    public static ConfigEntry<float> SecondsOfUsageGrantedPerCore;
+
     public static KeyCode SurtlingFireKey;
 
     private const string AuthorName = "cybergen";
     private const string ModName = "SurtlingHelm";
-    private const string ModVer = "0.1.0";
+    private const string ModVer = "0.1.1";
 
     internal static SurtlingHelm Instance { get; private set; }
 
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
-    private async void Awake()
+    private void Awake()
     {
       Instance = this;
       Log.Init(Logger);
@@ -47,14 +52,6 @@ namespace SurtlingHelm
       ObjectDBHelper.OnAfterInit += PlayerPatch.Init;
     }
 
-    /// <summary>
-    /// Destroying the attached Behaviour will result in the game or Scene receiving OnDestroy.
-    /// OnDestroy occurs when a Scene or game ends.
-    /// It is also called when your mod is unloaded, this is where you do clean up of hooks, harmony patches,
-    /// loose GameObjects and loose monobehaviours.
-    /// Loose here refers to gameobjects not attached
-    /// to the parent BepIn GameObject where your BaseUnityPlugin is attached
-    /// </summary>
     private void OnDestroy()
     {
       PlayerPatch.Disable();
@@ -68,8 +65,16 @@ namespace SurtlingHelm
       BasePhysicalDamage = Config.Bind("General", "BasePhysicalDamage", 10f, "The Physical damage the laser does");
       KnockbackForce = Config.Bind("General", "KnockbackForce", 45f, "The amount of knockback done by the laser");
       ChopDamage = Config.Bind("General", "ChopDamage", 20f, "The amount of chop done by the laser");
+
       SurtlingRequired = Config.Bind("General", "SurtlingRequired", 15, "The amount of Surtling Cores required to craft");
       TrollHideRequired = Config.Bind("General", "TrollHideRequired", 4, "The amount of Troll Hide required to craft");
+      LinenThreadRequired = Config.Bind("General", "LinenThreadRequired", 10, "The amount of Linen Thread required to craft");
+      SurtlingTrophyRequired = Config.Bind("General", "SurtlingTrophyRequired", 3, "The amount of Surtling Trophies required to craft");
+      WorkbenchLevelRequired = Config.Bind("General", "WorkbenchLevelRequired", 5, "The level of workbench required to craft");
+
+      ConsumeCoresAsFuel = Config.Bind("General", "ConsumeSurtlingCoresAsFuel", true, "Whether using the laser should consume Surtling Cores");
+      SecondsOfUsageGrantedPerCore = Config.Bind("General", "SecondsOfUsagePerCore", 5f, "How many seconds of laser usage to grant per consumed core");
+
       if (!Enum.TryParse<KeyCode>(LaserFireKey.Value, out var laserFireKeyCode))
       {
         Debug.Log("Failed to parse hotkey for laser fire");
@@ -80,7 +85,6 @@ namespace SurtlingHelm
 
     private void InitStatusEffects()
     {
-      Debug.Log("Initializing status effects");
       var effect = ScriptableObject.CreateInstance<SE_SurtlingEquippedEffect>();
       effect.m_icon = AssetHelper.Icon;
       effect.m_name = Language.LanguageData.EffectValue;

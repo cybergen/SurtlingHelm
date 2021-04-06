@@ -14,6 +14,9 @@
     public const string SurtlingTooltipName = "$se_surtlingeffect_tooltip";
     public const string SurtlingTooltipValue = "Your eyes glow with ominous force";
 
+    public const string NeedResourcesErrorName = "$surtling_helm_error";
+    public const string NeedResourcesErrorValue = "Need Surtling Cores to use helm powers";
+
     public static void Init()
     {
       ValheimLib.Language.AddToken(TokenName, TokenValue, true);
