@@ -67,7 +67,6 @@ namespace SurtlingHelm.Util
 
     public static void Init()
     {
-      Debug.Log("Loading asset bundle and creating item");
       SurtlingAssetBundle = GetAssetBundleFromResources(AssetBundleName);
     }
 

@@ -8,13 +8,33 @@ To get your helmet, first:
 
 * [Install BepInEx](https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/)
 * [Install the HookGen patcher](https://valheim.thunderstore.io/package/ValheimModding/HookGenPatcher/)
-* [Install ValheimLib](https://valheim.thunderstore.io/package/ValheimModding/ValheimLib/) in order to get access to all these features!
-* Copy this SurtlingHelm .dll file into your BepInEx/plugins folder
-* Find a basic workbench and craft your purple hood of imminent death! (for a one-time fee of Surtling Cores and Troll Hide)
+* [Install ValheimLib](https://valheim.thunderstore.io/package/ValheimModding/ValheimLib/)
+* Copy SurtlingHelm.dll into your BepInEx/plugins folder
+* Find a basic workbench and craft your purple hood of imminent death! (for a one-time fee of Surtling Cores, Troll Hide, Linen Thread, and Surtling Trophies)
+* Once equipped, press the fire key (default G) to shoot lasers (consumes 1 Surtling Core for every 5 seconds fired by default)
 
-You can also edit the cost of the helm, as well as its damage by changing the config at BepInEx/config/SurthlingHelm.cfg
+## Config
 
-On the other side awaits all these features!
+The config file lives at BepInEx/config/SurthlingHelm.cfg. You can use it to configure the following features:
+
+* Damage amounts for several types
+* Whether the helm uses Surtling Cores to fire lasers (or should just fire for free)
+* The cost to produce it (if you set all costs to 0, it will cost 1 wood)
+* The level of workbench required to make it
+
+## Changeset
+
+### 0.1.1
+* Added ability to toggle consumption of Surtling Cores in order to power the laser (default grants 5 seconds of laser per core consumed)
+* Changed sound effect to be less obnoxious
+* Added workbench level setting for how difficult it is to craft
+* Added Linen Thread and Surtling Trophy requirements for crafting
+* Added ability to set required items to 0 for crafting in order to remove them
+
+### 0.1.0
+* Initial release
+
+# Check out these features!
 
 ## Stylish
 
