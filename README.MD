@@ -24,6 +24,11 @@ The config file lives at BepInEx/config/SurthlingHelm.cfg. You can use it to con
 
 ## Changeset
 
+### 0.1.2
+* Added ability to toggle eye fire trail via config
+* Added ability to toggle laser sound effect via config
+* Made ray cast start at a safer distance dependent on player position relative to camera
+
 ### 0.1.1
 * Added ability to toggle consumption of Surtling Cores in order to power the laser (default grants 5 seconds of laser per core consumed)
 * Changed sound effect to be less obnoxious

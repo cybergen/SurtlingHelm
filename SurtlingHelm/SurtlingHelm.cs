@@ -32,11 +32,14 @@ namespace SurtlingHelm
     public static ConfigEntry<bool> ConsumeCoresAsFuel;
     public static ConfigEntry<float> SecondsOfUsageGrantedPerCore;
 
+    public static ConfigEntry<bool> UseEyeTrailEffects;
+    public static ConfigEntry<bool> UseLaserSound;
+
     public static KeyCode SurtlingFireKey;
 
     private const string AuthorName = "cybergen";
     private const string ModName = "SurtlingHelm";
-    private const string ModVer = "0.1.1";
+    private const string ModVer = "0.1.2";
 
     internal static SurtlingHelm Instance { get; private set; }
 
@@ -74,6 +77,9 @@ namespace SurtlingHelm
 
       ConsumeCoresAsFuel = Config.Bind("General", "ConsumeSurtlingCoresAsFuel", true, "Whether using the laser should consume Surtling Cores");
       SecondsOfUsageGrantedPerCore = Config.Bind("General", "SecondsOfUsagePerCore", 5f, "How many seconds of laser usage to grant per consumed core");
+
+      UseEyeTrailEffects = Config.Bind("General", "UseEyeTrailEffects", true, "Whether to generate eye trail effects while helm is equipped");
+      UseLaserSound = Config.Bind("General", "UseLaserSound", true, "Whether to use the lazer sound");
 
       if (!Enum.TryParse<KeyCode>(LaserFireKey.Value, out var laserFireKeyCode))
       {

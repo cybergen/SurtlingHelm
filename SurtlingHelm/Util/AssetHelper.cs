@@ -31,6 +31,7 @@ namespace SurtlingHelm.Util
         if (_eyeBeamGameObject == null)
         {
           _eyeBeamGameObject = SurtlingAssetBundle.LoadAsset<GameObject>(EyeBeamPrefabPath);
+          _eyeBeamGameObject.GetComponent<AudioSource>().enabled = SurtlingHelm.UseLaserSound.Value;
         }
         return _eyeBeamGameObject;
       }
