@@ -73,9 +73,9 @@ Grab a friend (or 9) and lay waste to the countryside together!
 
 ## Credits
 
-* This repo began as a fork of the excellent [ValheimModStub](https://github.com/sirskunkalot/ValheimModStub) repo which is a great template for Valheim mods
-* It's also built using [ValheimLib](https://github.com/Valheim-Modding/ValheimLib) which greatly simplifies adding new items
+* This repo began as a fork of the [ValheimModStub](https://github.com/sirskunkalot/ValheimModStub) repo which is a template for Valheim mods with debugging functionality
+* It's also built using [ValheimLib](https://github.com/Valheim-Modding/ValheimLib) which simplifies adding new items
 
 ## Make Your Own
 
-Check out the [Valheim modding wiki](https://github.com/Valheim-Modding/Wiki/wiki) to learn more, including how to [add your own items!](https://github.com/Valheim-Modding/Wiki/wiki/Custom-Item-and-Recipe-Creation)
+Check out the [Valheim modding wiki](https://github.com/Valheim-Modding/Wiki/wiki) to learn more, including how to [add your own items](https://github.com/Valheim-Modding/Wiki/wiki/Custom-Item-and-Recipe-Creation)
