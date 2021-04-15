@@ -111,7 +111,8 @@ namespace SurtlingHelm.Patch
 
             bool hasDoneFlash = false;
             bool didDamage = false;
-            foreach (var hit in Physics.RaycastAll(_cam.transform.position + dir * 1.5f, dir, 50f))
+            var distToPlayer = Vector3.Distance(_cam.transform.position, __instance.transform.position);
+            foreach (var hit in Physics.RaycastAll(_cam.transform.position + dir * distToPlayer, dir, 50f))
             {
               var newEndpoint = hit.point;
               var newDir = (newEndpoint - position).normalized;

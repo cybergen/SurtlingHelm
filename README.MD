@@ -24,6 +24,11 @@ The config file lives at BepInEx/config/SurthlingHelm.cfg. You can use it to con
 
 ## Changeset
 
+### 0.1.2
+* Added ability to toggle eye fire trail via config
+* Added ability to toggle laser sound effect via config
+* Made ray cast start at a safer distance dependent on player position relative to camera
+
 ### 0.1.1
 * Added ability to toggle consumption of Surtling Cores in order to power the laser (default grants 5 seconds of laser per core consumed)
 * Changed sound effect to be less obnoxious
@@ -68,9 +73,9 @@ Grab a friend (or 9) and lay waste to the countryside together!
 
 ## Credits
 
-* This repo began as a fork of the excellent [ValheimModStub](https://github.com/sirskunkalot/ValheimModStub) repo which is a great template for Valheim mods
-* It's also built using [ValheimLib](https://github.com/Valheim-Modding/ValheimLib) which greatly simplifies adding new items
+* This repo began as a fork of the [ValheimModStub](https://github.com/sirskunkalot/ValheimModStub) repo which is a template for Valheim mods with debugging functionality
+* It's also built using [ValheimLib](https://github.com/Valheim-Modding/ValheimLib) which simplifies adding new items
 
 ## Make Your Own
 
-Check out the [Valheim modding wiki](https://github.com/Valheim-Modding/Wiki/wiki) to learn more, including how to [add your own items!](https://github.com/Valheim-Modding/Wiki/wiki/Custom-Item-and-Recipe-Creation)
+Check out the [Valheim modding wiki](https://github.com/Valheim-Modding/Wiki/wiki) to learn more, including how to [add your own items](https://github.com/Valheim-Modding/Wiki/wiki/Custom-Item-and-Recipe-Creation)

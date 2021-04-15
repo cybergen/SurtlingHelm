@@ -19,6 +19,9 @@ namespace SurtlingHelm.Effect
     public override void UpdateStatusEffect(float dt)
     {
       base.UpdateStatusEffect(dt);
+
+      if (!SurtlingHelm.UseEyeTrailEffects.Value) return;
+
       if (!m_character.IsTeleporting() && _eyeFireEffect == null)
       {
         SpawnFlames();
@@ -42,6 +45,8 @@ namespace SurtlingHelm.Effect
 
     private void SpawnFlames()
     {
+      if (!SurtlingHelm.UseEyeTrailEffects.Value) return;
+
       var target = GetTargetPosition(m_character);
       _eyeFireEffect = Instantiate(AssetHelper.EyeGlowPrefab, target.Item1, Quaternion.identity);
       _transform = _eyeFireEffect.transform;
