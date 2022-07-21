@@ -102,6 +102,8 @@ namespace SurtlingHelm
             effect.name = LanguageData.EffectValue;
             effect.m_tooltip = LanguageData.SurtlingTooltipName;
             ItemManager.Instance.AddStatusEffect(new CustomStatusEffect(effect, true));
+
+            PrefabManager.OnVanillaPrefabsAvailable -= InitStatusEffects;
         }
     }
 }

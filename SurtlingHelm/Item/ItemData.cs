@@ -16,6 +16,7 @@ namespace SurtlingHelm.Item
         internal static void Init()
         {
             AddCustomItems();
+            PrefabManager.OnVanillaPrefabsAvailable -= Init;
         }
 
         private static void AddCustomItems()

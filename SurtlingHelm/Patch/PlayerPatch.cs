@@ -45,6 +45,11 @@ namespace SurtlingHelm.Patch
         private static void Postfix(Player __instance, ref Attack ___m_currentAttack, ref float ___m_lastCombatTimer, Rigidbody ___m_body, ZSyncAnimation ___m_zanim,
           CharacterAnimEvent ___m_animEvent, VisEquipment ___m_visEquipment, Attack ___m_previousAttack, float ___m_timeSinceLastAttack)
         {
+            if (!Player.m_localPlayer)
+            {
+                return;
+            }
+
             _hitEffectCooldown -= Time.deltaTime;
 
             var helm = __instance.GetInventory().GetAllItems().

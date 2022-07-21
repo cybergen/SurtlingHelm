@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
+using Jotunn.Managers;
 using UnityEngine;
 
 namespace SurtlingHelm.Util
@@ -69,6 +70,7 @@ namespace SurtlingHelm.Util
         public static void Init()
         {
             SurtlingAssetBundle = GetAssetBundleFromResources(AssetBundleName);
+            PrefabManager.OnVanillaPrefabsAvailable -= Init;
         }
 
         public static AssetBundle GetAssetBundleFromResources(string fileName)
