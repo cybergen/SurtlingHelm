@@ -22,7 +22,7 @@ namespace SurtlingHelm.Language
         public const string NeedResourcesErrorName = "$surtling_helm_error";
         public const string NeedResourcesErrorValue = "Need Surtling Cores to use helm powers";
         
-        public static CustomLocalization Localization = new CustomLocalization();
+        public static CustomLocalization Localization = LocalizationManager.Instance.GetLocalization();
 
         public static void Init()
         {

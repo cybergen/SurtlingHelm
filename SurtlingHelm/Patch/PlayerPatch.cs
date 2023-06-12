@@ -57,7 +57,7 @@ namespace SurtlingHelm.Patch
 
             if (_cam == null) _cam = Camera.main;
 
-            if (helm != null && helm.m_equiped)
+            if (helm != null && helm.m_equipped)
             {
                 var firing = false;
                 var firePressed = ZInput.GetButton(SurtlingHelm.LaserFireButton.Name);
@@ -99,7 +99,7 @@ namespace SurtlingHelm.Patch
                         _shaker.m_strength = 1f;
                     }
 
-                    if (__instance.IsPlayer() && helm != null && helm.m_equiped)
+                    if (__instance.IsPlayer() && helm != null && helm.m_equipped)
                     {
                         var head = __instance.m_head;
                         var position = head.position + head.up * 0.18f;
@@ -147,7 +147,7 @@ namespace SurtlingHelm.Patch
                                     m_attacker = __instance.GetZDOID(),
                                     m_dir = dir,
                                     m_point = hit.point,
-                                    m_skill = Skills.SkillType.FireMagic,
+                                    m_skill = Skills.SkillType.BloodMagic,
                                     m_pushForce = SurtlingHelm.KnockbackForce.Value,
                                     m_blockable = true,
                                     m_dodgeable = false,
