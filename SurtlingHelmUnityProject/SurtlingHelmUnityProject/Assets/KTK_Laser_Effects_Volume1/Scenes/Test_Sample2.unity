@@ -761,7 +761,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1294111516}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14bebe9674de84539b755c64ae41638c, type: 3}
+  m_Script: {fileID: 11500000, guid: 94b15813ae5a422409255560b6947a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   EffectLaser_Set:

@@ -368,12 +368,10 @@ FodyWeavers.xsd
 !libraries/*
 .idea/
 
-# dll's
-libraries/ValheimLib.dll
+# Unity Stuff
 SurtlingHelmUnityProject/SurtlingHelmUnityProject/Assets/Libraries/*.dll
 SurtlingHelmUnityProject/SurtlingHelmUnityProject/Assets/Libraries/*.dll.meta
-
-# Unity Stuff
+SurtlingHelmUnityProject/SurtlingHelmUnityProject/Assets/[Pp]lugins/
 SurtlingHelmUnityProject/SurtlingHelmUnityProject/[Ll]ibrary/
 SurtlingHelmUnityProject/SurtlingHelmUnityProject/[Tt]emp/
 SurtlingHelmUnityProject/SurtlingHelmUnityProject/[Oo]bj/
